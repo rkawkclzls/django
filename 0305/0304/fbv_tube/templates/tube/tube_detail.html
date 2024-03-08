@@ -1,0 +1,21 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.author }}</p>
+<p>{{ post.content|linebreaks }}</p>
+
+<video controls>
+    <source src="{{ post.video_file.url }}"></source>      
+</video>
+
+{% for tag in post.tags.all %}
+    <a href="/tube/tag/{{ tag.name }}">#{{ tag.name }}</a>
+{% endfor %}
+
+{% for comment in post.comments.all %}
+    <p>{{ comment.message }}</p>
+{% endfor %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>

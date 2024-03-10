@@ -1,0 +1,39 @@
+{% extends "accounts/base.html" %}
+{% block contents %}
+<main class="container mt-5">
+    <header class="text-center mb-4">
+        <h1 class="my-4">회원가입</h1>
+    </header>
+    
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <section class="mt-5">
+        <form method="POST" action=".">
+            {% csrf_token %}
+            <fieldset class="border p-4 rounded">
+                <div class="mb-3">
+                    <label for="username" class="form-label">사용자 이름</label>
+                    <input type="text" class="form-control" id="username" placeholder="사용자 이름" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="useremail" class="form-label">사용자 이메일</label>
+                    <input type="email" class="form-control" id="useremail" placeholder="사용자 이메일" name="useremail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">비밀번호</label>
+                    <input type="password" class="form-control" id="password" placeholder="비밀번호" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="re_password" class="form-label">비밀번호 확인</label>
+                    <input type="password" class="form-control" id="re_password" placeholder="비밀번호 확인" name="re_password" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">등록</button>
+            </fieldset>
+        </form>
+    </section>
+</main>
+{% endblock %}

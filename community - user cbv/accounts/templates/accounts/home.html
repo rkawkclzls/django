@@ -1,0 +1,14 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    {% if user %}
+        <h1>Hello! {{ user.username }}님</h1>
+    {% else %}
+        <h1>로그인 해주세요!</h1>
+    {% endif %}
+</body>
+</html>

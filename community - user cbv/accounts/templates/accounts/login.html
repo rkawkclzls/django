@@ -1,0 +1,42 @@
+{% extends "accounts/base.html" %}
+{% block contents %}
+<main class="container mt-5">
+    <section class="row">
+        <div class="col-12 text-center">
+            <h1>로그인</h1>
+        </div>
+    </section>
+
+    <section class="row mt-5">
+        <div class="col-12">
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="row mt-5 login-container">
+        <div class="col-12">
+            <form method="POST" action="." novalidate>
+                {% csrf_token %}
+                <fieldset class="border p-4 rounded">
+                    {% for field in form %}
+                        <div class="form-group mb-3">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            <input type="{{ field.field.widget.input_type }}" class="form-control" id="{{ field.id_for_label }}" placeholder="{{ field.label }}" name="{{ field.name }}" required>
+                            {% if field.errors %}
+                                <strong class="text-danger">{{ field.errors.as_text }}</strong>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <div class="form-group mt-3">
+                        <button type="submit" class="btn btn-primary">로그인</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}
